@@ -29,25 +29,32 @@ def help(message):
 
 
 @bot.message_handler(content_types=['text'])
-def mess(message):
-    output = message.text
-    bot.send_message(
-        message.chat.id,
-        output,
-        parse_mode='html',
-    )
-    print("text", output)
+def text(message):
+    try:
+        output = message.text
+        bot.send_message(
+            message.chat.id,
+            output,
+            parse_mode='markdown'
+            #parse_mode='html',
+        )
+        print("text", output)
+    except:
+        print("error", message)
 
 
 @bot.message_handler(func=lambda message: message.forward_from_chat, content_types=["text", "photo", "video"])
 def posts_from_channels(message):
-    output = message
-    bot.send_message(
-        message.chat.id,
-        output,
-        parse_mode='html',
-    )
-    print('frwd', message.text)
+    try:
+        output = message.text
+        bot.send_message(
+            message.chat.id,
+            output,
+            parse_mode='markdown'
+        )
+        print('frwd', outout)
+    except:
+        print("error", message)
 
 
 bot.polling(none_stop=True)
