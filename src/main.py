@@ -1,20 +1,23 @@
 #!/usr/bin/env python3
 
+# SVTV daily telegram-bot
+# @svtvnews_daily_bot
+# t.me/svtvnews_daily_bot
 
 from telebot import TeleBot, types
 
 
-token_file = open('/Users/narek/.pass/.svtv_bot.token')
+token_file = open('/Users/narek/.pass/.svtvnews_bot.token')
 token = token_file.read().rstrip('\n')
 bot = TeleBot(token)
 
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    output = "Привет! Раз в день я буду пересылать тебе посты из @svtv_news "
+    output = "Привет! Раз в день я буду пересылать тебе посты из @svtvnews "
     output += "резюмирующие события, произошедшие за день.\n\n"
-    output += "Hello! Once a day I will forward you messages from @svtv_news "
-    output += "summarizing day's events."
+    output += "Hello! Once a day I will forward you messages from @svtvnews "
+    output += "summarizing the main events of the day."
 
     bot.send_message(
         message.chat.id,
