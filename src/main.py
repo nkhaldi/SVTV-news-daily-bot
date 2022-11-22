@@ -18,7 +18,6 @@ def start(message):
     output += "резюмирующие события, произошедшие за день.\n\n"
     output += "Hello! Once a day I will forward you messages from @svtvnews "
     output += "summarizing the main events of the day."
-
     bot.send_message(
         message.chat.id,
         output,
@@ -31,33 +30,23 @@ def help(message):
     start(message)
 
 
-@bot.message_handler(content_types=['text'])
+#@bot.message_handler(func=lambda message: message.forward_from_chat, content_types=["text", "photo", "video"])
+@bot.message_handler(content_types=["text"])
 def text(message):
-    try:
-        output = message.text
-        bot.send_message(
-            message.chat.id,
-            output,
-            parse_mode='markdown'
-            #parse_mode='html',
-        )
-        print("text", output)
-    except:
-        print("error", message)
+    output = message.text
+    bot.send_message(
+        message.chat.id,
+        output,
+        parse_mode='html',
+    )
 
 
-@bot.message_handler(func=lambda message: message.forward_from_chat, content_types=["text", "photo", "video"])
-def posts_from_channels(message):
-    try:
-        output = message.text
-        bot.send_message(
-            message.chat.id,
-            output,
-            parse_mode='markdown'
-        )
-        print('frwd', outout)
-    except:
-        print("error", message)
-
+@bot.message_handler(content_types=["photo"])
+def photo(message):
+    bot.forward_message(
+        message.chat.id, 
+        message_id=message.id,
+        from_chat_id=message.chat.id
+    )
 
 bot.polling(none_stop=True)
