@@ -6,3 +6,6 @@
 ### [en] Telegram-bot for SVTV, that collects posts from @svtvnews summarizing the day's events.
 
 ### https://t.me/svtvnews_daily_bot
+
+#### Bot based on template Latand/tgbot_template
+https://github.com/Latand/tgbot_template
