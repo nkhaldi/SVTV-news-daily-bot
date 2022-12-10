@@ -1,10 +1,13 @@
 from aiogram import Dispatcher
 from aiogram.types import Message
 
+from tgbot.handlers.help import get_help_message
+
 
 async def user_start(message: Message):
-    msg = f"Hello, {message.from_user.first_name}"
-    await message.reply(msg)
+    start_message = f"Привет, {message.from_user.first_name}!\n"
+    start_message += get_help_message()
+    await message.reply(start_message)
 
 
 def register_user(dp: Dispatcher):
