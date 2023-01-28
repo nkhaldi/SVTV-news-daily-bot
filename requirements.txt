@@ -1,5 +1,4 @@
 aiogram
 aioredis
 asyncio
-logging
 environs
