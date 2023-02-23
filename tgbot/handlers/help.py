@@ -13,11 +13,6 @@ async def cmd_help(message: Message):
     await message.reply(help_message)
 
 
-async def cmd_help(message: Message):
-    help_message = get_help_message()
-    await message.reply(help_message)
-
-
 async def call_help(callback: CallbackQuery):
     help_message = get_help_message()
     await callback.message.reply(help_message)
